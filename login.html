@@ -26,6 +26,9 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- css link  -->
+     <link rel="stylesheet" href="./style/style.css">
   </head>
   <body>
     <!-- login page section  -->
@@ -42,6 +45,7 @@
           </h2>
           <p class="text-gray-500 mb-5">Sign in to manage your issues</p>
           <input
+            id="username"
             type="text"
             placeholder="Enter Username"
             class="input input-bordered outline-none w-full mb-1"
@@ -49,13 +53,14 @@
           <p class="text-xs text-start text-blue-600 mb-3">Default: admin</p>
 
           <input
+            id="password"
             type="password"
             placeholder="Enter Password"
             class="input input-bordered outline-none w-full mb-1"
           />
           <p class="text-xs text-start text-blue-600 mb-3">Default: admin123</p>
 
-          <button class="btn btn-primary w-full">Sign In</button>
+          <button onclick="singIn()" class="btn btn-primary w-full">Sign In</button>
 
           <div class="divider">OR</div>
           <div class="bg-base-200 p-3 rounded text-sm">
@@ -66,5 +71,7 @@
         </div>
       </div>
     </section>
+
+    <script src="./script/index.js"></script>
   </body>
 </html>
