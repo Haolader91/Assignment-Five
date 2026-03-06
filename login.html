@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- title and fav-icons -->
+    <title>GitHub Issues Tracker</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/github-logo.png"
+      type="image/x-icon"
+    />
+
+    <!-- font use  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- tailwindcss + daisyui  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <!-- login page section  -->
+    <section class="">
+      <div
+        class="login-container bg-base-200 flex h-screen items-center justify-center"
+      >
+        <div class="text-center w-96 bg-base-100 shadow-xl p-6 rounded-md">
+          <div class="flex justify-center mb-8">
+            <img src="./assets/github-logo.png" alt="" />
+          </div>
+          <h2 class="text-3xl text-[#1F2937] font-bold">
+            GitHub Issues Tracker
+          </h2>
+          <p class="text-gray-500 mb-5">Sign in to manage your issues</p>
+          <input
+            type="text"
+            placeholder="Enter Username"
+            class="input input-bordered outline-none w-full mb-1"
+          />
+          <p class="text-xs text-start text-blue-600 mb-3">Default: admin</p>
+
+          <input
+            type="password"
+            placeholder="Enter Password"
+            class="input input-bordered outline-none w-full mb-1"
+          />
+          <p class="text-xs text-start text-blue-600 mb-3">Default: admin123</p>
+
+          <button class="btn btn-primary w-full">Sign In</button>
+
+          <div class="divider">OR</div>
+          <div class="bg-base-200 p-3 rounded text-sm">
+            <p class="text-gray-500 pb-2">Demo Credentials</p>
+            <p>Username: admin</p>
+            <p>Password: admin123</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
