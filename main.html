@@ -64,9 +64,13 @@
       <!-- tabs section -->
       <section>
         <div class="flex gap-4 m-5 py-6">
-          <button class="btn btn-primary" onclick="loadIssues('all', this)">All</button>
+          <button class="btn btn-primary" onclick="loadIssues('all', this)">
+            All
+          </button>
           <button class="btn" onclick="loadIssues('open', this)">Open</button>
-          <button class="btn" onclick="loadIssues('closed', this)">Closed</button>
+          <button class="btn" onclick="loadIssues('closed', this)">
+            Closed
+          </button>
         </div>
       </section>
 
@@ -79,7 +83,7 @@
             </div>
 
             <div>
-              <span id="issueCount" class="font-semibold"></span><br>
+              <span id="issueCount" class="font-semibold"></span><br />
               <span>Track and manage your project issues</span>
             </div>
           </div>
@@ -95,6 +99,25 @@
       <section>
         <div id="issues" class="grid lg:grid-cols-4 md:grid-cols-2 gap-5"></div>
       </section>
+
+      <!-- modal section  -->
+      <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+          <div id="modal-box"></div>
+
+          <div class="modal-action">
+            <form method="dialog">
+              
+              <div class="card-actions justify-end mt-6">
+                <button
+                  class="btn btn-primary bg-[#6366f1] hover:bg-[#4f46e5] border-none px-10 text-lg normal-case">
+                  Close
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </main>
 
     <script src="./script/index.js"></script>

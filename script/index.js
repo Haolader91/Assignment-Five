@@ -67,7 +67,7 @@ const displayIssues = (issues, type = "all", btn) => {
             </div>
           <!-- title part  -->
           <div>
-            <h2 class="card-title text-base font-bold text-gray-800 leading-tight">
+            <h2 class="card-title text-base font-bold text-gray-800 leading-tight" onclick="modalLoad(${issue.id})">
               ${issue.title}
             </h2>
             <p class="text-xs text-gray-500 mt-2 line-clamp-2">
@@ -101,3 +101,53 @@ const displayIssues = (issues, type = "all", btn) => {
   }
 };
 // end
+// modal section
+const modalLoad = (id) => {
+  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`) //
+    .then((res) => res.json()) //
+    .then((data) => displayModal(data.data));
+};
+const displayModal = (modal) => {
+  console.log(modal);
+  const modalBox = document.getElementById("modal-box");
+  modalBox.innerHTML = `
+    <div class="card-body p-8 space-y-4">
+      <h2 class="card-title text-3xl font-bold text-slate-800">
+        ${modal.title}
+      </h2>
+
+      <div class="flex flex-wrap items-center gap-3 text-slate-500 text-sm">
+        <span class="badge badge-success gap-1 py-3 px-4 text-white font-medium">
+          ${modal.status}
+        </span>
+        <span>•</span>
+        <span>Opened by <span class="font-semibold text-slate-700">${modal.author}</span></span>
+        <span>•</span>
+        <span>${modal.updatedAt}</span>
+      </div>
+
+      <div class="flex gap-2 py-2">
+        <span class="badge flex gap-2 mt-1 py-3 px-3">
+           ${bugAndHelp(modal.labels)}
+        </span>
+      </div>
+
+      <p class="text-slate-600 leading-relaxed text-lg">
+       ${modal.description}
+      </p>
+
+      <div class="rounded-xl bg-[#F8FAFC] p-6 mt-4 flex justify-between items-center">
+        <div class="space-y-1">
+          <span class="text-slate-400 text-sm block">Assignee:</span>
+          <span class="font-bold text-slate-800 text-lg">${modal.author}</span>
+        </div>
+        <div class="text-right space-y-1">
+          <span class="text-slate-400 text-sm block">Priority:</span>
+          <span class="badge bg-red-500 text-white border-none py-3 px-4 font-bold">${modal.priority}</span>
+        </div>
+      </div>
+      </div>
+    </div>
+  `;
+  document.getElementById("my_modal_5").showModal();
+};
