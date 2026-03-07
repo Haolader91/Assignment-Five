@@ -60,21 +60,40 @@
     </header>
 
     <!-- main section  -->
-    <main class="container mx-auto bg-base-100 shadow rounded-xl">
+    <main class="container mx-auto bg-base-100 shadow rounded-xl px-5">
       <!-- tabs section -->
       <section>
         <div class="flex gap-4 m-5 py-6">
-          <button class="btn btn-primary">All</button>
-          <button class="btn">Open</button>
-          <button class="btn">Closed</button>
+          <button class="btn btn-primary" onclick="loadIssues('all', this)">All</button>
+          <button class="btn" onclick="loadIssues('open', this)">Open</button>
+          <button class="btn" onclick="loadIssues('closed', this)">Closed</button>
+        </div>
+      </section>
+
+      <!-- issues counting section  -->
+      <section>
+        <div class="flex justify-between mb-5">
+          <div class="flex items-center gap-2">
+            <div class="bg-[#ECE4FF] rounded-full p-2">
+              <img src="./assets/Aperture.png" alt="" />
+            </div>
+
+            <div>
+              <span id="issueCount" class="font-semibold"></span><br>
+              <span>Track and manage your project issues</span>
+            </div>
+          </div>
+          <div class="text-sm">
+            <span class="text-green-600">● Open</span>
+
+            <span class="ml-4 text-purple-600">● Closed</span>
+          </div>
         </div>
       </section>
 
       <!-- card section  -->
       <section>
-        <div id="issues" class="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
-          
-        </div>
+        <div id="issues" class="grid lg:grid-cols-4 md:grid-cols-2 gap-5"></div>
       </section>
     </main>
 

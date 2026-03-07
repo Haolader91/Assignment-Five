@@ -14,6 +14,7 @@ const singIn = () => {
   }
 };
 // end
+
 //  Issue card bug and help part
 const bugAndHelp = (arr) => {
   const colors = ["badge-error badge-soft", "badge-warning badge-soft"];
@@ -28,23 +29,34 @@ const bugAndHelp = (arr) => {
   return htmlElement.join(" ");
 };
 // Issues card load part
-const loadIssues = () => {
+const loadIssues = (type = "all", btn) => {
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues") //
     .then((res) => res.json()) //
-    .then((data) => displayIssues(data.data));
+    .then((data) => displayIssues(data.data, type, btn));
+  // .then((data) => console.log(data.data));
 };
 loadIssues();
 
 // issues card display
-const displayIssues = (issues) => {
-  console.log(issues);
+const displayIssues = (issues, type = "all", btn) => {
+  // console.log(issues);
+  const issueCounter = document.getElementById("issueCount"); // counting
   const issueContainer = document.getElementById("issues");
   issueContainer.innerHTML = "";
 
+  if (type !== "all") {
+    issues = issues.filter((i) => i.status === type); // filtering part
+  }
+  issueCounter.innerText = `${issues.length} Issues`; // counting part
+
   for (const issue of issues) {
     const createElement = document.createElement("div");
+    const border =
+      issue.status === "open" ? "border-green-500" : "border-purple-500";
+    createElement.className = `card bg-base-100 shadow border-t-4 ${border} cursor-pointer`;
+
     createElement.innerHTML = `
-      <div class="card w-full bg-base-100 shadow-xl border-t-4 border-error rounded-lg">
+      <div class="w-full rounded-lg">
         <div class="card-body p-5 gap-3">
             <!-- bag part -->
             <div class="flex justify-between items-center">
@@ -78,6 +90,14 @@ const displayIssues = (issues) => {
       </div>
       `;
     issueContainer.append(createElement);
+  }
+  // active btn running tab
+  if (btn) {
+    document
+      .querySelectorAll(".btn")
+      .forEach((t) => t.classList.remove("btn-primary"));
+
+    btn.classList.add("btn-primary");
   }
 };
 // end
