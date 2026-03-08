@@ -16,7 +16,7 @@ const singIn = () => {
 // end
 
 //  Issue card bug and help part
-const bugAndHelp = (arr) => {
+const bugAndHelp = (arr = []) => {
   const colors = ["badge-error badge-soft", "badge-warning badge-soft"];
 
   const htmlElement = arr.map(
@@ -30,16 +30,21 @@ const bugAndHelp = (arr) => {
 };
 // Issues card load part
 const loadIssues = (type = "all", btn) => {
+  // manageLoading(true); //----------------------------------------------------
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues") //
     .then((res) => res.json()) //
-    .then((data) => displayIssues(data.data, type, btn));
+    .then((data) => {
+      console.log(data);
+      displayIssues(data.data, type, btn);
+    });
   // .then((data) => console.log(data.data));
 };
-loadIssues();
+loadIssues("all");
 
 // issues card display
 const displayIssues = (issues, type = "all", btn) => {
   // console.log(issues);
+  // manageLoading(false); //----------------------------------------------------
   const issueCounter = document.getElementById("issueCount"); // counting
   const issueContainer = document.getElementById("issues");
   issueContainer.innerHTML = "";
@@ -77,7 +82,7 @@ const displayIssues = (issues, type = "all", btn) => {
           <!-- bug and help part -->
           <div class="flex gap-2 mt-1">
           <!-- Issue card bug and help -->
-              ${bugAndHelp(issue.labels)}
+              ${bugAndHelp(issue.labels || [])}
           </div>
           <!-- divider part  -->
           <div class="divider m-0 opacity-50"></div>
@@ -128,7 +133,7 @@ const displayModal = (modal) => {
 
       <div class="flex gap-2 py-2">
         <span class="badge flex gap-2 mt-1 py-3 px-3">
-           ${bugAndHelp(modal.labels)}
+           ${bugAndHelp(modal.labels || [])}
         </span>
       </div>
 
@@ -157,16 +162,28 @@ document.getElementById("btn-search").addEventListener("click", () => {
   const input = document.getElementById("input-search");
   const searchValue = input.value.trim().toLowerCase();
   console.log(searchValue);
+  // manageLoading(true); //--------------------------------------------------------------
   fetch(
     `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
   ) //
     .then((res) => res.json()) //
     .then((data) => {
       const searchWord = data.data;
-      console.log(searchWord);
+      // console.log(searchWord);
       const filterWord = searchWord.filter((issue) =>
         issue.title.toLowerCase().includes(searchValue),
       );
       displayIssues(filterWord);
     });
 });
+
+// loading part
+const manageLoading = (status) => {
+  if (status === true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("issues").classList.add("hidden");
+  } else {
+    document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("issues").classList.remove("hidden");
+  }
+};
