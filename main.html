@@ -49,11 +49,10 @@
             <p class="text-3xl font-bold pl-3">GitHub Issues Tracker</p>
           </div>
           <div class="flex gap-2">
-            <div class="input outline-none">
-              <i class="fa-solid fa-plus"></i>
-              <input type="text" placeholder="Search" class="md:w-auto" />
-            </div>
-            <button class="btn btn-primary">Search</button>
+            <label class="input outline-none">
+              <input id="input-search" type="search" required placeholder="Search" />
+            </label>
+            <button id="btn-search" class="btn btn-primary">Search</button>
           </div>
         </div>
       </nav>
@@ -101,7 +100,7 @@
       </section>
 
       <!-- modal section  -->
-      <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+      <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle"> 
         <div class="modal-box">
           <div id="modal-box"></div>
 

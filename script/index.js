@@ -151,3 +151,22 @@ const displayModal = (modal) => {
   `;
   document.getElementById("my_modal_5").showModal();
 };
+
+// search section
+document.getElementById("btn-search").addEventListener("click", () => {
+  const input = document.getElementById("input-search");
+  const searchValue = input.value.trim().toLowerCase();
+  console.log(searchValue);
+  fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
+  ) //
+    .then((res) => res.json()) //
+    .then((data) => {
+      const searchWord = data.data;
+      console.log(searchWord);
+      const filterWord = searchWord.filter((issue) =>
+        issue.title.toLowerCase().includes(searchValue),
+      );
+      displayIssues(filterWord);
+    });
+});
