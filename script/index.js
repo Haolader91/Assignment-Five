@@ -1,3 +1,14 @@
+// loading part
+const manageLoading = (status) => {
+  if (status === true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("issues").classList.add("hidden");
+  } else {
+    document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("issues").classList.remove("hidden");
+  }
+};
+
 // login page function
 const singIn = () => {
   const userName = document.getElementById("username").value;
@@ -30,7 +41,7 @@ const bugAndHelp = (arr = []) => {
 };
 // Issues card load part
 const loadIssues = (type = "all", btn) => {
-  // manageLoading(true); //----------------------------------------------------
+  manageLoading(true); //----------------------------------------------------
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues") //
     .then((res) => res.json()) //
     .then((data) => {
@@ -44,7 +55,7 @@ loadIssues("all");
 // issues card display
 const displayIssues = (issues, type = "all", btn) => {
   // console.log(issues);
-  // manageLoading(false); //----------------------------------------------------
+  manageLoading(false); //----------------------------------------------------
   const issueCounter = document.getElementById("issueCount"); // counting
   const issueContainer = document.getElementById("issues");
   issueContainer.innerHTML = "";
@@ -99,7 +110,7 @@ const displayIssues = (issues, type = "all", btn) => {
   // active btn running tab
   if (btn) {
     document
-      .querySelectorAll(".btn")
+      .querySelectorAll(".tabs-btn")
       .forEach((t) => t.classList.remove("btn-primary"));
 
     btn.classList.add("btn-primary");
@@ -162,7 +173,7 @@ document.getElementById("btn-search").addEventListener("click", () => {
   const input = document.getElementById("input-search");
   const searchValue = input.value.trim().toLowerCase();
   console.log(searchValue);
-  // manageLoading(true); //--------------------------------------------------------------
+  manageLoading(true); //--------------------------------------------------------------
   fetch(
     `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
   ) //
@@ -176,14 +187,3 @@ document.getElementById("btn-search").addEventListener("click", () => {
       displayIssues(filterWord);
     });
 });
-
-// loading part
-const manageLoading = (status) => {
-  if (status === true) {
-    document.getElementById("spinner").classList.remove("hidden");
-    document.getElementById("issues").classList.add("hidden");
-  } else {
-    document.getElementById("spinner").classList.add("hidden");
-    document.getElementById("issues").classList.remove("hidden");
-  }
-};
